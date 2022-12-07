@@ -1,0 +1,38 @@
+Ideas:
+-Chain storyline
+
+-Powerups, and items
+
+-If sneak jumpscares you, you 
+automatically lose one random 
+item
+
+-Nots look like sneaks until you get withis 2 ft
+
+-Balances: Damage, powerups
+
+-Nerfs: (%) chance of number of bug spawning per room
+
+-Make sure that player has a functional tool bar, and health. 
+
+Chap: #1
+Powerups+Comsunables to-do list
+Ideas:
+Powerup #1:
+Powerup #2:
+Powerup #3:
+Comsumable #1:
+Comsumable #2:
+Comsumable #3:
+
+Chap: #2
+Entitys, and chance of encounters
+CHAIN:
+Sneak:
+Bug:
+Error_666:
+Vein Eater:
+Saw:
+Chase: 
+Appearance: Bolt, Hammer, and wrench (Grey body, corrupted purple eyes, and black, sharp claws.)
+Chance of spawning per room: 0.5 every room. If player encountered more than three bugs in a row, doesn't spawn in the next one room. (Chase REALLY hates bug)
