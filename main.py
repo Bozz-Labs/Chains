@@ -18,6 +18,8 @@ def main():
     wn.addshape('resources/Player Left.gif')
     wn.addshape('resources/Sneak.gif')
     wn.addshape('resources/Medkit.gif')
+    wn.addshape('resources/Vein Eater.gif')
+    wn.addshape('resources/Player Gasmask.gif')
     wn.addshape('resources/Chains Logo.gif')
     
     text = turtle.Turtle()
@@ -60,6 +62,13 @@ def main():
     player.shape('resources/Player.gif')
     player.penup()
     player.goto(0, 0)
+
+    gasmask = turtle.Turtle()
+    gasmask.speed(0)
+    gasmask.shape('resources/Player Gasmask.gif')
+    gasmask.penup()
+    gasmask.goto(0, 0)
+    gasmask.hideturtle()
   
     # toolbar
     toolbar = turtle.Turtle()
@@ -144,7 +153,18 @@ def main():
       health_level[0] -= 1
   
     def damage(amount):
-      health_level[0] -= amount
+      health_level[0] -= amount      
+
+    gasmask_on = [False]
+    def equipt_gasmask():
+      if gasmask_on[0] == False:
+        gasmask_on.pop(0)
+        gasmask_on.append(True)
+        gasmask.showturtle()
+      else:
+        gasmask_on.pop(0)
+        gasmask_on.append(False)
+        gasmask.hideturtle()
   
     wn.listen()
     wn.onkeypress(player_up, 'w')
@@ -153,6 +173,7 @@ def main():
     wn.onkeypress(player_right, 'd')
     wn.onkeypress(wn.bye, 'q')
     wn.onkeypress(suicide, 'k')
+    wn.onkeypress(equipt_gasmask, 'g')
     medkit.onclick(heal, btn=1, add=None)
   
     while True:
@@ -187,8 +208,11 @@ def main():
             instructions.write('You picked up: Flashlight', align='center', font=('Courier', 24, 'normal'))
         if room_num == 2:
           wn.onclick(flashlight, btn=2, add=None)
+      sneak.goto(-1000, -1000)
   
       if room_num == 3:
+
+        sneak.goto(-80, -90)
         
         if player.ycor() == 80:       
           wn.bgpic('resources/Jumpsare 1.gif')
@@ -198,11 +222,16 @@ def main():
           sneak.hideturtle()
         else:  
           wn.bgpic('resources/Tutorial Room 3.gif')
+          
   
-        if room_num == 4:
-          wn.bgpic('resources/Tutorial Room 4.gif')
-  
-        sneak.goto(-80, -90)
+      if room_num == 4:
+        wn.bgpic('resources/Tutorial Room 4.gif')
+        sneak.goto(-1000, -1000)
+        vein_eater = turtle.Turtle()
+        vein_eater.shape('resources/Vein Eater.gif')
+        vein_eater.speed(0)
+        vein_eater.goto(0, 0)
+        vein_eater.penup()
   
         sneak.showturtle()
       if player.xcor() < -240:
@@ -262,6 +291,7 @@ def main():
             instructions.write("It's too bright in here", align='center', font=('Courier', 24, 'normal'))
   
         flashlight.onclick(flash_on, btn=1, add=None)
+      gasmask.goto(player.xcor(), player.ycor())
   except Exception as e:
     print(e)
 
