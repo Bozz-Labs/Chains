@@ -1,5 +1,6 @@
 import turtle
 import time
+import inputs
 
 def main():
   try:
@@ -166,18 +167,55 @@ def main():
         gasmask_on.append(False)
         gasmask.hideturtle()
   
-    wn.listen()
-    wn.onkeypress(player_up, 'w')
-    wn.onkeypress(player_left, 'a')
-    wn.onkeypress(player_down, 's')
-    wn.onkeypress(player_right, 'd')
-    wn.onkeypress(wn.bye, 'q')
-    wn.onkeypress(suicide, 'k')
-    wn.onkeypress(equipt_gasmask, 'g')
-    medkit.onclick(heal, btn=1, add=None)
-  
     while True:
-      wn.update()
+      wn.update()     
+      events = inputs.get_gamepad()
+      for event in events:
+        #if event.ev_type == 'Key':
+            #print(f'Key {event.code} was {event.state}')
+        if event.code == 'BTN_SOUTH' and event.state == 1:
+          print('A pressed')
+
+        if event.code == 'BTN_EAST' and event.state == 1:
+          print('B pressed')
+
+        if event.code == 'BTN_WEST' and event.state == 1:
+          print('X pressed')
+
+        if event.code == 'BTN_NORTH' and event.state == 1:
+          print('Y pressed')
+          equipt_gasmask()
+
+        if event.code == 'BTN_SELECT' and event.state == 1:
+          print('≡ pressed')
+
+        if event.code == 'ABS_HAT0Y' and event.state == 1:
+          print('DPAD_DOWN pressed')
+          player_down()
+
+        if event.code == 'ABS_HAT0X' and event.state == 1:
+            print('DPAD_RIGHT pressed')
+            player_right()
+
+        if event.code == 'ABS_HAT0Y' and event.state == -1:
+          print('DPAD_UP pressed')
+          player_up()
+
+        if event.code == 'ABS_HAT0X' and event.state == -1:
+            print('DPAD_LEFT pressed')
+            player_left()
+
+        if event.code == 'BTN_SOUTH' and event.state == 0:
+            print('A released')
+
+        if event.code == 'BTN_EAST' and event.state == 0:
+          print('B released')
+
+        if event.code == 'BTN_WEST' and event.state == 0:
+          print('X released')
+
+        if event.code == 'BTN_NORTH' and event.state == 0:
+          print('Y released')
   
       display_health.clear()
       display_health.write('Health: {}'.format(health_level), align='center', font=('Courier', 24, 'normal'))
@@ -296,6 +334,4 @@ def main():
     print(e)
 
 main()
-
-
 
