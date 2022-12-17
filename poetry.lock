@@ -157,6 +157,14 @@ optional = false
 python-versions = ">=3.6"
 
 [[package]]
+name = "pygame"
+version = "2.1.2"
+description = "Python Game Development"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[[package]]
 name = "pyparsing"
 version = "3.0.9"
 description = "pyparsing module - Classes and methods to define and execute parsing grammars"
@@ -316,7 +324,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "flake8 (<5)", "pytest-co
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8.0,<3.9"
-content-hash = "e7c77722d0da4b9a70b82b69d87d6d9f3b25326fecf1e41df9cda17fd85252d7"
+content-hash = "9ea8d4afb58de63dbc7a96368a4a50d3bbdb0954fb33afe80751a7595f117b1d"
 
 [metadata.files]
 click = []
@@ -333,6 +341,7 @@ packaging = []
 parso = []
 pluggy = []
 pyflakes = []
+pygame = []
 pyparsing = []
 python-lsp-jsonrpc = []
 python-lsp-server = []
