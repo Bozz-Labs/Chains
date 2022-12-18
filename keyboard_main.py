@@ -295,5 +295,3 @@ def main():
   except Exception as e:
     print(e)
 
-main()
-
