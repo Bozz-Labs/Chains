@@ -1,6 +1,6 @@
 import turtle
 import time
-#wn.oncli
+
 def main():
   try:
     #Variables  
