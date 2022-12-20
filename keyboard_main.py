@@ -1,6 +1,6 @@
 import turtle
 import time
-
+#wn.oncli
 def main():
   try:
     #Variables  
@@ -30,15 +30,6 @@ def main():
     text.hideturtle()
     text.goto(0, 260)
     text.write('Chains: Tutorial', align='center', font=('Courier', 24, 'normal'))
-  
-    instructions = turtle.Turtle()
-    instructions.speed(0)
-    instructions.shape('square')
-    instructions.color('white')
-    instructions.penup()
-    instructions.hideturtle()
-    instructions.goto(0, 220)
-    instructions.write('Instructions', align='center', font=('Courier', 24, 'normal'))
   
     coords = turtle.Turtle()
     coords.speed(0)
@@ -103,6 +94,13 @@ def main():
     display_health.penup()
     display_health.hideturtle()
     display_health.goto(0, -260)
+    
+    vein_eater = turtle.Turtle()
+    vein_eater.shape('resources/Vein Eater.gif')
+    vein_eater.speed(0)
+    vein_eater.goto(0, 0)
+    vein_eater.penup()
+    vein_eater.hideturtle()
     display_health.write('{}'.format(health_level[0]), align='center', font=('Courier', 24, 'normal'))
   
     # Functions
@@ -195,8 +193,6 @@ def main():
       if room_num == 2:
         if room_change[0] == False:
           wn.bgpic('resources/Tutorial Room 2.gif')
-        instructions.clear()
-        instructions.write('You can open drawers in this game by clicking anywhere on the screen. Try it!', align='center', font=('Courier', 24, 'normal'))
         
         def flashlight(x, y):
           if room_num == 2:
@@ -204,8 +200,6 @@ def main():
             room_change.append(True)
             items.append('flashlight')
             wn.bgpic('resources/Tutorial Room 2 - Open Drawer.gif')
-            instructions.clear()
-            instructions.write('You picked up: Flashlight', align='center', font=('Courier', 24, 'normal'))
         if room_num == 2:
           wn.onclick(flashlight, btn=2, add=None)
       sneak.goto(-1000, -1000)
@@ -227,11 +221,20 @@ def main():
       if room_num == 4:
         wn.bgpic('resources/Tutorial Room 4.gif')
         sneak.goto(-1000, -1000)
-        vein_eater = turtle.Turtle()
-        vein_eater.shape('resources/Vein Eater.gif')
-        vein_eater.speed(0)
-        vein_eater.goto(0, 0)
-        vein_eater.penup()
+        vein_eater.showturtle()
+        def follow_player():
+          vein_eater.setheading(vein_eater.towards(player))
+          vein_eater.forward(1)
+          wn.ontimer(follow_player, 1500)
+
+        follow_player()
+        if player.distance(vein_eater) < 0:
+          health_level[0] -= 1
+      
+      if room_num == 5:
+        wn.bgpic('resources/Tutorial Room 5.gif')
+        if player.xcor() == 0 and player.ycor() == 0:
+          wn.bye()
   
         sneak.showturtle()
       if player.xcor() < -240:
@@ -279,19 +282,20 @@ def main():
             player.color('white')
             flashlight.on = True
           else:
-            instructions.clear()
-            instructions.write("Cannot use flashlight tight now.", align='center', font=('Courier', 24, 'normal'))
+            pass
   
         def flash_off(x, y):
           if flashlight.on == True:
             player.color('white')
             flashlight.on = False
           else:
-            instructions.clear()
-            instructions.write("It's too bright in here", align='center', font=('Courier', 24, 'normal'))
+            pass
   
         flashlight.onclick(flash_on, btn=1, add=None)
       gasmask.goto(player.xcor(), player.ycor())
+    if health_level < 1:
+      wn.bye()
+      print('Game over.')
   except Exception as e:
     print(e)
 
