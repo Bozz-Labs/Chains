@@ -103,6 +103,7 @@ def main():
     vein_eater.goto(0, 0)        
     vein_eater.penup()   
     vein_eater.shape('resources/Vein Eater.gif')
+    vein_eater.hideturtle()
   
     # Functions
     def player_up():

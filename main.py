@@ -20,3 +20,5 @@ wn.onclick(controller, btn=3, add=None)
 
 wn.onclick(keyboard, btn=1, add=None)
 
+wn.mainloop()
+
