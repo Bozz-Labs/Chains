@@ -275,6 +275,9 @@ def main():
         if player.xcor() == 0 and player.ycor() == 0:
           wn.bye()
         
+      if player.xcor() < -240:
+        player.goto(-240, player.ycor())
+        
       if player.xcor() > 240:
         player.goto(240, player.ycor())
         
